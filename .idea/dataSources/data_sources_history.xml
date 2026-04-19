@@ -5,7 +5,7 @@
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
-      <remarks>C:/Users/Shruti/OneDrive/Desktop/backend/backend/src/main/resources/application.properties</remarks>
+      <remarks>C:/Users/Shruti/OneDrive/Desktop/Job_Tracker/backend/src/main/resources/application.properties</remarks>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/jobtracker</jdbc-url>
       <jdbc-additional-properties>

@@ -22,7 +22,12 @@ public class JobApplication {
     @Column(nullable = false)
     private String status; // Applied, Interview, Offer, Rejected
 
+    @Column(columnDefinition = "TEXT")
     private String notes;
+
+    private String jobUrl;
+    @Column(columnDefinition = "TEXT")
+    private String jobDescription;
 
     private LocalDate appliedDate;
 

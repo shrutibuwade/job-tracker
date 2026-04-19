@@ -29,10 +29,10 @@ public class UserService {
         if (user == null) {
             throw new RuntimeException("User not found!");
         }
-        // Compare encrypted password
         if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new RuntimeException("Wrong password!");
         }
+        user.setPassword(null);
         return user;
     }
 }

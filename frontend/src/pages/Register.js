@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTheme } from '../context/ThemeContext';
 import { registerUser } from '../services/api';
 
 function Register() {
     const navigate = useNavigate();
+    const { isDark, colors } = useTheme();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -31,162 +33,171 @@ function Register() {
     };
 
     return (
-        <div style={styles.container}>
-            <div style={styles.card}>
-                <h2 style={styles.title}>Create Account</h2>
-                <p style={styles.subtitle}>Start tracking your job applications</p>
-
-                {error && <p style={styles.error}>{error}</p>}
-
-                <form onSubmit={handleSubmit}>
-                    <div style={styles.inputGroup}>
-                        <label style={styles.label}>Full Name</label>
-                        <input
-                            style={styles.input}
-                            type="text"
-                            name="name"
-                            placeholder="Enter your name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-
-                    <div style={styles.inputGroup}>
-                        <label style={styles.label}>Email</label>
-                        <input
-                            style={styles.input}
-                            type="email"
-                            name="email"
-                            placeholder="Enter your email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-
-                    <div style={styles.inputGroup}>
-                        <label style={styles.label}>Password</label>
-                        <input
-                            style={styles.input}
-                            type="password"
-                            name="password"
-                            placeholder="Enter your password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-
-                    <button
-                        style={loading ? styles.buttonDisabled : styles.button}
-                        type="submit"
-                        disabled={loading}
-                    >
-                        {loading ? 'Creating Account...' : 'Register'}
-                    </button>
-                </form>
-
-                <p style={styles.loginText}>
-                    Already have an account?{' '}
-                    <span style={styles.link} onClick={() => navigate('/login')}>
-                        Login here
-                    </span>
-                </p>
-            </div>
-        </div>
-    );
-}
-
-const styles = {
-    container: {
+    <div style={{
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#f0f2f5'
-    },
-    card: {
-        backgroundColor: 'white',
-        padding: '2rem',
-        borderRadius: '12px',
-        boxShadow: '0 2px 12px rgba(0,0,0,0.1)',
-        width: '100%',
-        maxWidth: '420px'
-    },
-    title: {
-        fontSize: '24px',
-        fontWeight: '600',
-        color: '#1a1a2e',
-        marginBottom: '4px'
-    },
-    subtitle: {
-        fontSize: '14px',
-        color: '#666',
-        marginBottom: '24px'
-    },
-    inputGroup: {
-        marginBottom: '16px'
-    },
-    label: {
-        display: 'block',
-        fontSize: '14px',
-        fontWeight: '500',
-        color: '#333',
-        marginBottom: '6px'
-    },
-    input: {
-        width: '100%',
-        padding: '10px 14px',
-        borderRadius: '8px',
-        border: '1px solid #ddd',
-        fontSize: '14px',
-        outline: 'none',
-        boxSizing: 'border-box'
-    },
-    button: {
-        width: '100%',
-        padding: '12px',
-        backgroundColor: '#4f46e5',
-        color: 'white',
-        border: 'none',
-        borderRadius: '8px',
-        fontSize: '15px',
-        fontWeight: '500',
-        cursor: 'pointer',
-        marginTop: '8px'
-    },
-    buttonDisabled: {
-        width: '100%',
-        padding: '12px',
-        backgroundColor: '#a5b4fc',
-        color: 'white',
-        border: 'none',
-        borderRadius: '8px',
-        fontSize: '15px',
-        fontWeight: '500',
-        cursor: 'not-allowed',
-        marginTop: '8px'
-    },
-    error: {
-        color: '#ef4444',
-        fontSize: '14px',
-        marginBottom: '16px',
-        padding: '10px',
-        backgroundColor: '#fef2f2',
-        borderRadius: '8px'
-    },
-    loginText: {
-        textAlign: 'center',
-        fontSize: '14px',
-        color: '#666',
-        marginTop: '20px'
-    },
-    link: {
-        color: '#4f46e5',
-        cursor: 'pointer',
-        fontWeight: '500'
-    }
-};
+        background: isDark
+            ? 'linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%)'
+            : 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%)',
+        padding: '1rem'
+    }}>
+        <div style={{
+            width: '100%',
+            maxWidth: '420px',
+            backgroundColor: colors.bgCard,
+            borderRadius: '24px',
+            padding: '2.5rem',
+            border: `1px solid ${colors.border}`,
+            boxShadow: isDark
+                ? '0 25px 50px rgba(0,0,0,0.5)'
+                : '0 25px 50px rgba(0,0,0,0.08)'
+        }}>
+            {/* Logo */}
+            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                <div style={{
+                    width: '56px',
+                    height: '56px',
+                    borderRadius: '16px',
+                    background: 'linear-gradient(135deg, #7c3aed, #4f46e5)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '0 auto 1rem'
+                }}>
+                    <span style={{ fontSize: '24px' }}>💼</span>
+                </div>
+                <h1 style={{ fontSize: '22px', fontWeight: '700', color: colors.textPrimary, margin: 0 }}>
+                    CareerSync AI
+                </h1>
+                <p style={{ color: colors.textSecondary, fontSize: '14px', margin: '6px 0 0 0' }}>
+                    Create your account to get started
+                </p>
+            </div>
+
+            {error && (
+                <div style={{
+                    backgroundColor: 'rgba(239,68,68,0.1)',
+                    border: '1px solid rgba(239,68,68,0.3)',
+                    borderRadius: '10px',
+                    padding: '10px 14px',
+                    marginBottom: '1.5rem',
+                    color: '#ef4444',
+                    fontSize: '14px'
+                }}>
+                    {error}
+                </div>
+            )}
+
+            <form onSubmit={handleSubmit}>
+                <div style={{ marginBottom: '16px' }}>
+                    <label style={{ display: 'block', fontSize: '13px', fontWeight: '500', color: colors.textSecondary, marginBottom: '6px' }}>
+                        Full Name
+                    </label>
+                    <input
+                        style={{
+                            width: '100%',
+                            padding: '11px 14px',
+                            borderRadius: '10px',
+                            border: `1px solid ${colors.border}`,
+                            backgroundColor: colors.bgSecondary,
+                            color: colors.textPrimary,
+                            fontSize: '14px',
+                            outline: 'none',
+                            boxSizing: 'border-box'
+                        }}
+                        type="text"
+                        name="name"
+                        placeholder="Enter your full name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+
+                <div style={{ marginBottom: '16px' }}>
+                    <label style={{ display: 'block', fontSize: '13px', fontWeight: '500', color: colors.textSecondary, marginBottom: '6px' }}>
+                        Email
+                    </label>
+                    <input
+                        style={{
+                            width: '100%',
+                            padding: '11px 14px',
+                            borderRadius: '10px',
+                            border: `1px solid ${colors.border}`,
+                            backgroundColor: colors.bgSecondary,
+                            color: colors.textPrimary,
+                            fontSize: '14px',
+                            outline: 'none',
+                            boxSizing: 'border-box'
+                        }}
+                        type="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+
+                <div style={{ marginBottom: '24px' }}>
+                    <label style={{ display: 'block', fontSize: '13px', fontWeight: '500', color: colors.textSecondary, marginBottom: '6px' }}>
+                        Password
+                    </label>
+                    <input
+                        style={{
+                            width: '100%',
+                            padding: '11px 14px',
+                            borderRadius: '10px',
+                            border: `1px solid ${colors.border}`,
+                            backgroundColor: colors.bgSecondary,
+                            color: colors.textPrimary,
+                            fontSize: '14px',
+                            outline: 'none',
+                            boxSizing: 'border-box'
+                        }}
+                        type="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+
+                <button
+                    type="submit"
+                    disabled={loading}
+                    style={{
+                        width: '100%',
+                        padding: '12px',
+                        background: loading ? colors.border : 'linear-gradient(135deg, #7c3aed, #4f46e5)',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '10px',
+                        fontSize: '15px',
+                        fontWeight: '600',
+                        cursor: loading ? 'not-allowed' : 'pointer'
+                    }}
+                >
+                    {loading ? 'Creating Account...' : 'Create Account →'}
+                </button>
+            </form>
+
+            <p style={{ textAlign: 'center', fontSize: '14px', color: colors.textSecondary, marginTop: '1.5rem' }}>
+                Already have an account?{' '}
+                <span
+                    onClick={() => navigate('/login')}
+                    style={{ color: '#7c3aed', cursor: 'pointer', fontWeight: '600' }}
+                >
+                    Login here
+                </span>
+            </p>
+        </div>
+    </div>
+);
+
+}
 
 export default Register;
