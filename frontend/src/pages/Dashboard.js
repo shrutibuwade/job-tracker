@@ -56,7 +56,7 @@ const [fetchingUrl, setFetchingUrl] = useState(false);
     if (!jobUrl) { alert('Please enter a job URL!'); return; }
     setFetchingUrl(true);
     try {
-        const response = await fetch('http://localhost:8080/api/fetch/job', {
+        const response = await fetch('https://job-tracker-production-ae77.up.railway.app/api/fetch/job', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ url: jobUrl })
@@ -100,7 +100,7 @@ setFormData({
             setEditJob(null);
             setFormData({ jobTitle: '', companyName: '', status: 'Applied', notes: '', appliedDate: '', jobUrl: '', jobDescription: '' });
             if (editJob && formData.status !== editJob.status) {
-    await fetch('http://localhost:8080/api/email/application-update', {
+    await fetch('https://job-tracker-production-ae77.up.railway.app/api/email/application-update', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -153,7 +153,7 @@ setFormData({
     setSelectedJob(job);
     setShowNotes(true);
     try {
-        const response = await fetch(`http://localhost:8080/api/notes/${job.id}`);
+        const response = await fetch(`https://job-tracker-production-ae77.up.railway.app/api/notes/${job.id}`);
         const data = await response.json();
         setNotes(data);
     } catch (err) { console.error(err); }
@@ -162,7 +162,7 @@ setFormData({
 const handleAddNote = async (e) => {
     e.preventDefault();
     try {
-        const response = await fetch(`http://localhost:8080/api/notes/${selectedJob.id}/${user.id}`, {
+        const response = await fetch(`https://job-tracker-production-ae77.up.railway.app/api/notes/${selectedJob.id}/${user.id}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(noteForm)
@@ -178,13 +178,13 @@ const handleAddNote = async (e) => {
 };
 
 const handleDeleteNote = async (noteId) => {
-    await fetch(`http://localhost:8080/api/notes/${noteId}`, { method: 'DELETE' });
+    await fetch(`https://job-tracker-production-ae77.up.railway.app/api/notes/${noteId}`, { method: 'DELETE' });
     setNotes(notes.filter(n => n.id !== noteId));
 };
 
 const handleNoteReminder = async (note) => {
     try {
-        await fetch('http://localhost:8080/api/email/interview-reminder', {
+        await fetch('https://job-tracker-production-ae77.up.railway.app/api/email/interview-reminder', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
