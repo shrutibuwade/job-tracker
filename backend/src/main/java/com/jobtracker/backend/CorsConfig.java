@@ -16,7 +16,8 @@ public class CorsConfig {
                 registry.addMapping("/**")
                         .allowedOrigins(
                                 "http://localhost:3000",
-                                "https://job-tracker-ex57ucb7j-shrutibuwades-projects.vercel.app"
+                                "https://job-tracker-ex57ucb7j-shrutibuwades-projects.vercel.app",
+                                "https://job-tracker-eight-gamma.vercel.app"
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
                         .allowedHeaders("*");
