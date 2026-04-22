@@ -17,7 +17,8 @@ public class CorsConfig {
                         .allowedOrigins(
                                 "http://localhost:3000",
                                 "https://job-tracker-ex57ucb7j-shrutibuwades-projects.vercel.app",
-                                "https://job-tracker-eight-gamma.vercel.app"
+                                "https://job-tracker-eight-gamma.vercel.app",
+                                "https://job-tracker-git-main-shrutibuwades-projects.vercel.app"
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
                         .allowedHeaders("*");
