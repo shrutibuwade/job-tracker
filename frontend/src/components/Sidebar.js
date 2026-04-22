@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { FiGrid, FiBarChart2, FiCalendar, FiFileText, FiLogOut, FiBriefcase, FiSun, FiMoon, FiUser } from 'react-icons/fi';
+import { FiGrid, FiBarChart2, FiCalendar, FiFileText, FiLogOut, FiBriefcase, FiSun, FiMoon, FiUser, FiBookOpen } from 'react-icons/fi';
 import { useTheme } from '../context/ThemeContext';
 
 const menuItems = [
@@ -9,6 +9,7 @@ const menuItems = [
     { icon: <FiCalendar size={20} />, label: 'Interviews', path: '/interviews' },
     { icon: <FiFileText size={20} />, label: 'Resume Matcher', path: '/resume-matcher' },
     { icon: <FiFileText size={20} />, label: 'Cover Letter', path: '/cover-letter' },
+    { icon: <FiBookOpen size={20} />, label: 'Interview Prep', path: '/interview-prep' },
     { icon: <FiUser size={20} />, label: 'Profile', path: '/profile' },
 ];
 

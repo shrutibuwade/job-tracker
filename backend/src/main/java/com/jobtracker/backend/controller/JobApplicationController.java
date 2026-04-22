@@ -73,4 +73,12 @@ public class JobApplicationController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @GetMapping("/{userId}/advanced-stats")
+    public ResponseEntity<?> getAdvancedStats(@PathVariable Long userId) {
+        try {
+            return ResponseEntity.ok(jobApplicationService.getAdvancedStats(userId));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

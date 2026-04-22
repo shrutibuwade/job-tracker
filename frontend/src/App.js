@@ -7,6 +7,7 @@ import Analytics from './pages/Analytics';
 import Interviews from './pages/Interviews';
 import Profile from './pages/Profile';
 import CoverLetter from './pages/CoverLetter';
+import InterviewPrep from './pages/InterviewPrep';
 import ResumeMatcher from './pages/ResumeMatcher';
 import Layout from './components/Layout';
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/resume-matcher" element={<Layout><ResumeMatcher /></Layout>} />
         <Route path="/profile" element={<Layout><Profile /></Layout>} />
         <Route path="/cover-letter" element={<Layout><CoverLetter /></Layout>} />
+        <Route path="/interview-prep" element={<Layout><InterviewPrep /></Layout>} />
       </Routes>
     </Router>
   );
